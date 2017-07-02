@@ -178,10 +178,9 @@ void usage(char* ex) {
             "each of the following lines, until EOF, one initial term must be\n"
             "specified in the format 'i_1 i_2 ... i_n c_{i_1, i_2, ..., i_n}',\n"
             "meaning that 'c_{i_1, i_2, ..., i_n}' is the coefficient of\n"
-            "'x_1^{i_1} x_2^{i_2} ... x_n^{i_n}' in F. The list of initial\n"
-            "terms must be exhaustive, meaning that if a coefficient is listed,\n"
-            "then all coefficients with smaller indices must be listed as\n"
-            "well.\n"
+            "'x_1^{i_1} x_2^{i_2} ... x_n^{i_n}' in F. The list of initial terms\n"
+            "must be closed down, meaning that if a coefficient is listed, then\n"
+            "all coefficients with smaller indices must be listed as well.\n"
             );
     exit(1);
 }
