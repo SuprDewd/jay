@@ -1,4 +1,5 @@
 
+.deps
 *.o
 /src/jay
 
