@@ -159,7 +159,9 @@ struct combinations {
 
 void usage(char* ex) {
     fprintf(stderr, "Usage: %s [OPTION]...\n", ex);
-    fprintf(stderr, "Given initial terms of an unknown generating function F, conjecture functional equations that F satisfies.\n");
+    fprintf(stderr,
+            "Given initial terms of an unknown generating function F,\n"
+            "conjecture a functional equation that F satisfies.\n");
     fprintf(stderr, "\n");
     fprintf(stderr, "  -D,  --diff        the highest derivative of F to appear (default: 0)\n");
     fprintf(stderr, "  -fd, --fdeg        the highest power of F to appear (default: 1)\n");
@@ -168,6 +170,19 @@ void usage(char* ex) {
     fprintf(stderr, "       --hops        generate output that HOPS understands\n");
     fprintf(stderr, "  -h,  --help        display this help and exit\n");
     fprintf(stderr, "  -q,  --quiet       don't log any unnecessary output\n");
+    fprintf(stderr, "\n");
+    fprintf(stderr,
+            "The program expects the initial terms to be specified on standard\n"
+            "input in the following format. On the first line an integer 'n',\n"
+            "denoting the number of variables in the generating function. On\n"
+            "each of the following lines, until EOF, one initial term must be\n"
+            "specified in the format 'i_1 i_2 ... i_n c_{i_1, i_2, ..., i_n}',\n"
+            "meaning that 'c_{i_1, i_2, ..., i_n}' is the coefficient of\n"
+            "'x_1^{i_1} x_2^{i_2} ... x_n^{i_n}' in F. The list of initial\n"
+            "terms must be exhaustive, meaning that if a coefficient is listed,\n"
+            "then all coefficients with smaller indices must be listed as\n"
+            "well.\n"
+            );
     exit(1);
 }
 
