@@ -98,21 +98,25 @@ private:
 };
 
 struct validate_polynomial_complete {
-    vi &deg, cur;
+    vi &deg, cur, missing;
     std::set<vi> &seen;
     validate_polynomial_complete(vi &_deg, std::set<vi> &_seen) : deg(_deg), cur(VARS), seen(_seen) {
     }
     bool bt(int at) {
         if (at == VARS) {
-            return seen.find(cur) != seen.end();
+            if (seen.find(cur) == seen.end()) {
+                missing = cur;
+                return false;
+            }
+            return true;
         }
         rep(i,0,deg[at]+1) {
             cur[at] = i;
-            if (bt(at+1)) {
-                return true;
+            if (!bt(at+1)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
     bool validate() {
         return bt(0);
@@ -143,8 +147,13 @@ polynomial read_polynomial() {
         res[key] = cval;
         rep(i,0,VARS) deg[i] = std::max(deg[i], key[i]);
     }
-    if (!validate_polynomial_complete(deg, seen).validate()) {
-        error("missing terms in input polynomial");
+    validate_polynomial_complete val(deg, seen);
+    if (!val.validate()) {
+        std::stringstream ss;
+        iter(it,val.missing) {
+            ss << " " << *it;
+        }
+        error("missing term in input polynomial:%s", ss.str().c_str());
     }
     res.know = deg;
     res.clean();
