@@ -11,7 +11,7 @@ CXXFLAGS="$CXXFLAGS -std=c++0x"
 
 AC_CHECK_HEADERS([gmp.h])
 AC_CHECK_HEADERS([gmpxx.h])
-AC_CHECK_LIB([gmpx], [__gmpz_init])
+AC_CHECK_LIB([gmp], [__gmpz_init])
 AC_CHECK_LIB([gmpxx], [main])
 
 AC_OUTPUT
